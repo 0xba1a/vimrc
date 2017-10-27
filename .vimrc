@@ -26,6 +26,7 @@ Plugin 'reedes/vim-lexical'
 Plugin 'bronson/vim-trailing-whitespace'
 
 if g:isUbuntu != ""
+   " In Ubuntu Web-dev machine only
    Plugin 'Valloric/YouCompleteMe'
    Plugin 'plasticboy/vim-markdown'
    Plugin 'digitaltoad/vim-pug'
@@ -75,15 +76,22 @@ let g:mapleader = ","
 " Fast saving
 nmap <leader>w :w!<cr>
 
-" :W sudo saves the file
+" :W sudo saves the file 
 " (useful for handling the permission-denied error)
 command W w !sudo tee % > /dev/null
 
-set cindent
-set tabstop=3
-set shiftwidth=3
+if g:isUbuntu == ""
+   " For Cent-OS machine
+   set cindent
+   set tabstop=3
+   set shiftwidth=3
+   set expandtab
+else
+   set tabstop=2
+   set shiftwidth=2
+endif
+
 set scrolloff=30
-set expandtab
 set cursorline
 set nu
 set wildmenu
