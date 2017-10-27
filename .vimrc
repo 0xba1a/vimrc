@@ -12,7 +12,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive'
 Plugin 'maxbrunsfeld/vim-yankstack'
-Plugin 'tpope/vim-repeat'           " dependancy for vim-easyclip
+Plugin 'tpope/vim-repeat'                   " dependancy for vim-easyclip
 Plugin 'junegunn/seoul256.vim'
 Plugin 'crusoexia/vim-dracula'
 Plugin 'vim-scripts/grep.vim'
@@ -26,10 +26,12 @@ Plugin 'reedes/vim-lexical'
 Plugin 'bronson/vim-trailing-whitespace'
 
 if g:isUbuntu != ""
-   " In Ubuntu Web-dev machine only
-   Plugin 'Valloric/YouCompleteMe'
-   Plugin 'plasticboy/vim-markdown'
-   Plugin 'digitaltoad/vim-pug'
+	" In Ubuntu Web-dev machine only
+	Plugin 'nathanaelkane/vim-indent-guides' " >= 7.2
+	Plugin 'Valloric/YouCompleteMe'          " >= 7.2
+	Plugin 'plasticboy/vim-markdown'
+	Plugin 'digitaltoad/vim-pug'
+	Plugin 'maksimr/vim-jsbeautify'
 endif
 
 " All of your Plugins must be added before the following line
@@ -56,10 +58,10 @@ let g:airline#extensions#tabline#enabled = 1
 
 " Spell checker - vim-lexical
 augroup lexical
-  autocmd!
-  autocmd FileType markdown,mkd call lexical#init()
-  autocmd FileType textile call lexical#init()
-  autocmd FileType text call lexical#init({ 'spell': 0 })
+	autocmd!
+	autocmd FileType markdown,mkd call lexical#init()
+	autocmd FileType textile call lexical#init()
+	autocmd FileType text call lexical#init({ 'spell': 0 })
 augroup END
 
 let g:lexical#spell = 1
@@ -67,6 +69,19 @@ let g:lexical#spell = 1
 " yankStack
 nmap <C-p> <Plug>yankstack_substitute_older_paste
 nmap <C-P> <Plug>yankstack_substitute_newer_paste
+
+if g:isUbuntu != ""
+	" vim-indent-guide
+	let g:indent_guides_enable_on_vim_startup = 1
+
+	" JS-beautify
+	map <C-f> :call JsBeautify()<cr>
+	autocmd FileType javascript vnoremap <buffer> <c-f> :call RangeJsBeautify()<cr>
+	autocmd FileType json vnoremap <buffer> <c-f> :call RangeJsonBeautify()<cr>
+	autocmd FileType jsx vnoremap <buffer> <c-f> :call RangeJsxBeautify()<cr>
+	autocmd FileType html,markdown vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
+	autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
+endif
 
 " --------------------------------- COMMON -----------------------------------
 "  Leader
@@ -76,19 +91,19 @@ let g:mapleader = ","
 " Fast saving
 nmap <leader>w :w!<cr>
 
-" :W sudo saves the file 
+" :W sudo saves the file
 " (useful for handling the permission-denied error)
 command W w !sudo tee % > /dev/null
 
 if g:isUbuntu == ""
-   " For Cent-OS machine
-   set cindent
-   set tabstop=3
-   set shiftwidth=3
-   set expandtab
+" For Cent-OS machine
+	autocmd FileType c,cpp set cindent
+	autocmd FileType c,cpp set tabstop=3
+	autocmd FileType c,cpp set shiftwidth=3
+	autocmd FileType c,cpp set expandtab
 else
-   set tabstop=2
-   set shiftwidth=2
+	set tabstop=4
+	set shiftwidth=4
 endif
 
 set scrolloff=30
