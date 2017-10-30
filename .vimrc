@@ -11,7 +11,6 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive'
-Plugin 'maxbrunsfeld/vim-yankstack'
 Plugin 'tpope/vim-repeat'                   " dependancy for vim-easyclip
 Plugin 'junegunn/seoul256.vim'
 Plugin 'vim-scripts/grep.vim'
@@ -33,6 +32,7 @@ if g:isUbuntu != ""
 	Plugin 'digitaltoad/vim-pug'
 	Plugin 'maksimr/vim-jsbeautify'
 	Plugin 'tomlion/vim-solidity'
+	Plugin 'YankRing.vim'
 endif
 
 " All of your Plugins must be added before the following line
@@ -67,10 +67,6 @@ augroup END
 
 let g:lexical#spell = 1
 
-" yankStack
-nmap <C-p> <Plug>yankstack_substitute_older_paste
-nmap <C-P> <Plug>yankstack_substitute_newer_paste
-
 " Autosave
 let g:auto_save = 1                " enable AutoSave on Vim startup
 let g:auto_save_in_insert_mode = 0 " do not save while in insert mode
@@ -89,6 +85,9 @@ if g:isUbuntu != ""
 
 	" vim-markdown
 	let g:vim_markdown_folding_disabled = 1
+
+	" yankring
+	nnoremap <silent> <F11> :YRShow<CR>
 endif
 
 " --------------------------------- COMMON -----------------------------------
