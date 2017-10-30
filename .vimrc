@@ -14,7 +14,6 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'maxbrunsfeld/vim-yankstack'
 Plugin 'tpope/vim-repeat'                   " dependancy for vim-easyclip
 Plugin 'junegunn/seoul256.vim'
-Plugin 'crusoexia/vim-dracula'
 Plugin 'vim-scripts/grep.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -24,6 +23,7 @@ Plugin 'vim-syntastic/syntastic'
 Plugin 'godlygeek/tabular'
 Plugin 'reedes/vim-lexical'
 Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'vim-scripts/vim-auto-save'
 
 if g:isUbuntu != ""
 	" In Ubuntu Web-dev machine only
@@ -32,6 +32,7 @@ if g:isUbuntu != ""
 	Plugin 'plasticboy/vim-markdown'
 	Plugin 'digitaltoad/vim-pug'
 	Plugin 'maksimr/vim-jsbeautify'
+	Plugin 'tomlion/vim-solidity'
 endif
 
 " All of your Plugins must be added before the following line
@@ -70,6 +71,10 @@ let g:lexical#spell = 1
 nmap <C-p> <Plug>yankstack_substitute_older_paste
 nmap <C-P> <Plug>yankstack_substitute_newer_paste
 
+" Autosave
+let g:auto_save = 1                " enable AutoSave on Vim startup
+let g:auto_save_in_insert_mode = 0 " do not save while in insert mode
+
 if g:isUbuntu != ""
 	" vim-indent-guide
 	let g:indent_guides_enable_on_vim_startup = 1
@@ -81,6 +86,9 @@ if g:isUbuntu != ""
 	autocmd FileType jsx vnoremap <buffer> <c-f> :call RangeJsxBeautify()<cr>
 	autocmd FileType html,markdown vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
 	autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
+
+	" vim-markdown
+	let g:vim_markdown_folding_disabled = 1
 endif
 
 " --------------------------------- COMMON -----------------------------------
