@@ -118,6 +118,7 @@ set cursorline
 set nu
 set wildmenu
 set lazyredraw
+set pastetoggle=<F3>
 map <leader>w :w!<cr>
 map <leader>q :q<cr>
 
