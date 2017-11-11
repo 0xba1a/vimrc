@@ -2,6 +2,7 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 let g:isUbuntu = system('uname -a | grep buntu')
+let g:isRasp = system('uname -a | grep raspberrypi')
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -24,7 +25,7 @@ Plugin 'reedes/vim-lexical'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'vim-scripts/vim-auto-save'
 
-if g:isUbuntu != ""
+if (g:isUbuntu != "") || (g:isRasp != "")
 	" In Ubuntu Web-dev machine only
 	Plugin 'nathanaelkane/vim-indent-guides' " >= 7.2
 	Plugin 'Valloric/YouCompleteMe'          " >= 7.2
@@ -71,7 +72,7 @@ let g:lexical#spell = 1
 let g:auto_save = 1                " enable AutoSave on Vim startup
 let g:auto_save_in_insert_mode = 0 " do not save while in insert mode
 
-if g:isUbuntu != ""
+if (g:isUbuntu != "") || (g:isRasp != "")
 	" vim-indent-guide
 	let g:indent_guides_enable_on_vim_startup = 1
 
@@ -102,7 +103,7 @@ nmap <leader>w :w!<cr>
 " (useful for handling the permission-denied error)
 command W w !sudo tee % > /dev/null
 
-if g:isUbuntu == ""
+if (g:isUbuntu == "") && (g:isRasp == "")
 " For Cent-OS machine
 	autocmd FileType c,cpp set cindent
 	autocmd FileType c,cpp set tabstop=3
