@@ -150,6 +150,7 @@ map bh :bp <CR>
 map bl :bn <CR>
 
 " --------------------------------- CSCOPE -----------------------------------
+set cscopequickfix=s-,c-,d-,i-,t-,e-
 nmap .s :cs find s <cword> <CR>
 nmap .g :cs find g <cword> <CR>
 nmap .c :cs find c <cword> <CR>
