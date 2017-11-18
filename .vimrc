@@ -77,6 +77,7 @@ if (g:isUbuntu != "") || (g:isRasp != "")
 	let g:indent_guides_enable_on_vim_startup = 1
 
 	" JS-beautify
+	let s:opt_indent_char="\t"
 	map <C-f> :call JsBeautify()<cr>
 	autocmd FileType javascript vnoremap <buffer> <c-f> :call RangeJsBeautify()<cr>
 	autocmd FileType json vnoremap <buffer> <c-f> :call RangeJsonBeautify()<cr>
