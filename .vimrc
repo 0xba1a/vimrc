@@ -24,12 +24,13 @@ Plugin 'godlygeek/tabular'
 Plugin 'reedes/vim-lexical'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'vim-scripts/vim-auto-save'
+Plugin 'dkarter/bullets.vim'
+Plugin 'plasticboy/vim-markdown'
 
 if (g:isUbuntu != "") || (g:isRasp != "")
 	" In Ubuntu Web-dev machine only
 	Plugin 'nathanaelkane/vim-indent-guides' " >= 7.2
 	Plugin 'Valloric/YouCompleteMe'          " >= 7.2
-	Plugin 'plasticboy/vim-markdown'
 	Plugin 'digitaltoad/vim-pug'
 	Plugin 'maksimr/vim-jsbeautify'
 	Plugin 'tomlion/vim-solidity'
@@ -61,7 +62,7 @@ let g:airline#extensions#tabline#enabled = 1
 " Spell checker - vim-lexical
 augroup lexical
 	autocmd!
-	autocmd FileType markdown,mkd call lexical#init()
+	autocmd FileType modula2,markdown,mkd call lexical#init()
 	autocmd FileType textile call lexical#init()
 	autocmd FileType text call lexical#init({ 'spell': 0 })
 augroup END
@@ -71,6 +72,18 @@ let g:lexical#spell = 1
 " Autosave
 let g:auto_save = 1                " enable AutoSave on Vim startup
 let g:auto_save_in_insert_mode = 0 " do not save while in insert mode
+
+" vim-markdown
+let g:vim_markdown_folding_disabled = 1
+
+" Bullets.vim
+let g:bullets_enabled_file_types = [
+    \ 'markdown',
+    \ 'modula2',
+    \ 'text',
+    \ 'gitcommit',
+    \ 'scratch'
+    \]
 
 if (g:isUbuntu != "") || (g:isRasp != "")
 	" vim-indent-guide
@@ -84,9 +97,6 @@ if (g:isUbuntu != "") || (g:isRasp != "")
 	autocmd FileType jsx vnoremap <buffer> <c-f> :call RangeJsxBeautify()<cr>
 	autocmd FileType html,markdown vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
 	autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
-
-	" vim-markdown
-	let g:vim_markdown_folding_disabled = 1
 
 	" yankring
 	nnoremap <silent> <F11> :YRShow<CR>
@@ -123,6 +133,7 @@ set lazyredraw
 set pastetoggle=<F3>
 map <leader>w :w!<cr>
 map <leader>q :q<cr>
+nnoremap * *N
 
 "Search related
 set hlsearch
@@ -146,11 +157,8 @@ map tl :tabnext <CR>
 map th :tabprev <CR>
 map tx :tabclose <CR>
 
-" work on buffers
-map bh :bp <CR>
-map bl :bn <CR>
-
 " --------------------------------- CSCOPE -----------------------------------
+map <F5> :!cscope -Rbk<CR>:cs reset<CR><CR>
 set cscopequickfix=s-,c-,d-,i-,t-,e-
 nmap .s :cs find s <cword> <CR>
 nmap .g :cs find g <cword> <CR>
