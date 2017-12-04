@@ -78,18 +78,19 @@ let g:vim_markdown_folding_disabled = 1
 
 " Bullets.vim
 let g:bullets_enabled_file_types = [
-    \ 'markdown',
-    \ 'modula2',
-    \ 'text',
-    \ 'gitcommit',
-    \ 'scratch'
-    \]
+	\ 'markdown',
+	\ 'modula2',
+	\ 'text',
+	\ 'gitcommit',
+	\ 'scratch'
+	\]
 
 if (g:isUbuntu != "") || (g:isRasp != "")
 	" vim-indent-guide
 	let g:indent_guides_enable_on_vim_startup = 1
 
 	" JS-beautify
+	" change when required
 	let s:opt_indent_char="\t"
 	map <C-f> :call JsBeautify()<cr>
 	autocmd FileType javascript vnoremap <buffer> <c-f> :call RangeJsBeautify()<cr>
@@ -169,3 +170,8 @@ nmap .f :cs find f <cfile> <CR>
 nmap .i :cs find i <cfile> <CR>
 nmap .d :cs find d <cword> <CR>
 
+" --------------------------------- COLOR ------------------------------------
+" disable Background Color Erase (BCE) so that color schemes
+" render properly when inside 256-color tmux and GNU screen.
+" see also http://snk.tuxfamily.org/log/vim-256color-bce.html
+set t_ut=
