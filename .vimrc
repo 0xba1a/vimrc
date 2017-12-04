@@ -117,6 +117,8 @@ command W w !sudo tee % > /dev/null
 
 if (g:isUbuntu == "") && (g:isRasp == "")
 " For Cent-OS machine
+	set tabstop=4
+	set shiftwidth=4
 	autocmd FileType c,cpp set cindent
 	autocmd FileType c,cpp set tabstop=3
 	autocmd FileType c,cpp set shiftwidth=3
