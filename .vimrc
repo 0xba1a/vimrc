@@ -12,29 +12,29 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-repeat'                   " dependancy for vim-easyclip
+" Plugin 'tpope/vim-repeat'                   " dependancy for vim-easyclip
 Plugin 'junegunn/seoul256.vim'
-Plugin 'vim-scripts/grep.vim'
+" Plugin 'vim-scripts/grep.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'vim-syntastic/syntastic'
-Plugin 'godlygeek/tabular'
-Plugin 'reedes/vim-lexical'
+" Plugin 'godlygeek/tabular'
+" Plugin 'reedes/vim-lexical'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'vim-scripts/vim-auto-save'
-Plugin 'dkarter/bullets.vim'
-Plugin 'plasticboy/vim-markdown'
+" Plugin 'dkarter/bullets.vim'
+" Plugin 'plasticboy/vim-markdown'
 
 if (g:isUbuntu != "") || (g:isRasp != "")
 	" In Ubuntu Web-dev machine only
-	Plugin 'nathanaelkane/vim-indent-guides' " >= 7.2
-	Plugin 'Valloric/YouCompleteMe'          " >= 7.2
-	Plugin 'digitaltoad/vim-pug'
-	Plugin 'maksimr/vim-jsbeautify'
-	Plugin 'tomlion/vim-solidity'
-	Plugin 'YankRing.vim'
+	" Plugin 'nathanaelkane/vim-indent-guides' " >= 7.2
+	" Plugin 'Valloric/YouCompleteMe'          " >= 7.2
+	" Plugin 'digitaltoad/vim-pug'
+	" Plugin 'maksimr/vim-jsbeautify'
+	" Plugin 'tomlion/vim-solidity'
+	" Plugin 'YankRing.vim'
 endif
 
 " All of your Plugins must be added before the following line
