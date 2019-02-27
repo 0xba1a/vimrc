@@ -12,29 +12,21 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive'
-" Plugin 'tpope/vim-repeat'                   " dependancy for vim-easyclip
 Plugin 'junegunn/seoul256.vim'
-" Plugin 'vim-scripts/grep.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'vim-syntastic/syntastic'
-" Plugin 'godlygeek/tabular'
-" Plugin 'reedes/vim-lexical'
+Plugin 'reedes/vim-lexical'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'vim-scripts/vim-auto-save'
-" Plugin 'dkarter/bullets.vim'
-" Plugin 'plasticboy/vim-markdown'
+Plugin 'will133/vim-dirdiff'
 
 if (g:isUbuntu != "") || (g:isRasp != "")
 	" In Ubuntu Web-dev machine only
-	" Plugin 'nathanaelkane/vim-indent-guides' " >= 7.2
-	" Plugin 'Valloric/YouCompleteMe'          " >= 7.2
-	" Plugin 'digitaltoad/vim-pug'
-	" Plugin 'maksimr/vim-jsbeautify'
-	" Plugin 'tomlion/vim-solidity'
-	" Plugin 'YankRing.vim'
+	Plugin 'nathanaelkane/vim-indent-guides' " >= 7.2
+	Plugin 'ctrlpvim/ctrlp.vim'                  " >= 7.2
 endif
 
 " All of your Plugins must be added before the following line
@@ -50,6 +42,18 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 map <F2> :NERDTreeToggle<CR>
 let g:NERDTreeDirArrowExpandable = '>'
 let g:NERDTreeDirArrowCollapsible = 'v'
+
+" ctrlp.vim
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+let g:ctrlp_custom_ignore = '\v[\/](build*|halon-test|tools|chassis_sim)|(\.(git))$'
+" custom_ignore are ignored if custom user command is used. So disable
+"if executable('ag')
+"    set grepprg=ag\ --nogroup\ --nocolor
+"    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+"endif
 
 " Color theme
 syntax on
@@ -119,6 +123,7 @@ if (g:isUbuntu == "") && (g:isRasp == "")
 " For Cent-OS machine
 	set tabstop=4
 	set shiftwidth=4
+	set expandtab &
 	autocmd FileType c,cpp set cindent
 	autocmd FileType c,cpp set tabstop=3
 	autocmd FileType c,cpp set shiftwidth=3
@@ -126,6 +131,7 @@ if (g:isUbuntu == "") && (g:isRasp == "")
 else
 	set tabstop=4
 	set shiftwidth=4
+	set expandtab &
 endif
 
 set scrolloff=30
