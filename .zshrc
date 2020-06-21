@@ -1,8 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Path to your oh-my-zsh installation.
-export ZSH="/home/bala/.oh-my-zsh"
+export PATH=$PATH:
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -73,7 +71,6 @@ ZSH_THEME="bira"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
-source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
@@ -108,3 +105,14 @@ if [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
   POWERLINE_BASH_SELECT=1
   source /usr/share/powerline/bindings/bash/powerline.sh
 fi
+
+export LC_ALL=en_IN.UTF-8
+export LANG=en_IN.UTF-8
+
+ZSH_TMUX_AUTOSTART=true
+#ZSH_TMUX_ITERM2=true
+ZSH_TMUX_AUTOCONNECT=true
+
+# Path to your oh-my-zsh installation.
+export ZSH="/home/bala/.oh-my-zsh"
+source $ZSH/oh-my-zsh.sh
