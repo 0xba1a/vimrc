@@ -108,3 +108,10 @@ if [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
   POWERLINE_BASH_SELECT=1
   source /usr/share/powerline/bindings/bash/powerline.sh
 fi
+
+export LC_ALL=en_IN.UTF-8
+export LANG=en_IN.UTF-8
+ZSH_TMUX_AUTOSTART=true
+ZSH_TMUX_AUTOCONNECT=true
+
+export EDITOR=vim 
