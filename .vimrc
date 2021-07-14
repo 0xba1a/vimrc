@@ -1,8 +1,6 @@
 set nocompatible              " be iMproved, required
+set encoding=utf-8
 filetype off                  " required
-
-let g:isUbuntu = system('uname -a | grep buntu')
-let g:isRasp = system('uname -a | grep raspberrypi')
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -22,12 +20,8 @@ Plugin 'reedes/vim-lexical'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'vim-scripts/vim-auto-save'
 Plugin 'will133/vim-dirdiff'
-
-if (g:isUbuntu != "") || (g:isRasp != "")
-	" In Ubuntu Web-dev machine only
-	Plugin 'nathanaelkane/vim-indent-guides' " >= 7.2
-	Plugin 'ctrlpvim/ctrlp.vim'                  " >= 7.2
-endif
+Plugin 'nathanaelkane/vim-indent-guides' " >= 7.2
+Plugin 'ctrlpvim/ctrlp.vim'                  " >= 7.2
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -60,9 +54,6 @@ syntax on
 let g:seoul256_background = 235
 colorscheme seoul256
 
-" Status bar - Ariline
-let g:airline#extensions#tabline#enabled = 1
-
 " Spell checker - vim-lexical
 augroup lexical
 	autocmd!
@@ -89,23 +80,21 @@ let g:bullets_enabled_file_types = [
 	\ 'scratch'
 	\]
 
-if (g:isUbuntu != "") || (g:isRasp != "")
 	" vim-indent-guide
 	let g:indent_guides_enable_on_vim_startup = 1
 
-	" JS-beautify
-	" change when required
-	let s:opt_indent_char="\t"
-	map <C-f> :call JsBeautify()<cr>
-	autocmd FileType javascript vnoremap <buffer> <c-f> :call RangeJsBeautify()<cr>
-	autocmd FileType json vnoremap <buffer> <c-f> :call RangeJsonBeautify()<cr>
-	autocmd FileType jsx vnoremap <buffer> <c-f> :call RangeJsxBeautify()<cr>
-	autocmd FileType html,markdown vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
-	autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
+" JS-beautify
+" change when required
+let s:opt_indent_char="\t"
+map <C-f> :call JsBeautify()<cr>
+autocmd FileType javascript vnoremap <buffer> <c-f> :call RangeJsBeautify()<cr>
+autocmd FileType json vnoremap <buffer> <c-f> :call RangeJsonBeautify()<cr>
+autocmd FileType jsx vnoremap <buffer> <c-f> :call RangeJsxBeautify()<cr>
+autocmd FileType html,markdown vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
+autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
 
-	" yankring
-	nnoremap <silent> <F11> :YRShow<CR>
-endif
+" yankring
+nnoremap <silent> <F11> :YRShow<CR>
 
 " --------------------------------- COMMON -----------------------------------
 "  Leader
@@ -117,22 +106,17 @@ nmap <leader>w :w!<cr>
 
 " :W sudo saves the file
 " (useful for handling the permission-denied error)
-command W w !sudo tee % > /dev/null
+" command W w !sudo tee % > /dev/null
 
-if (g:isUbuntu == "") && (g:isRasp == "")
 " For Cent-OS machine
-	set tabstop=4
-	set shiftwidth=4
-	set expandtab &
-	autocmd FileType c,cpp set cindent
-	autocmd FileType c,cpp set tabstop=3
-	autocmd FileType c,cpp set shiftwidth=3
-	autocmd FileType c,cpp set expandtab
-else
-	set tabstop=4
-	set shiftwidth=4
-	set expandtab &
-endif
+set tabstop=4
+set shiftwidth=4
+set expandtab &
+autocmd FileType c,cpp set cindent
+autocmd FileType c,cpp set tabstop=3
+autocmd FileType c,cpp set shiftwidth=3
+autocmd FileType c,cpp set expandtab
+
 
 set scrolloff=30
 set cursorline
@@ -184,9 +168,15 @@ nmap .d :cs find d <cword> <CR>
 " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
 set t_ut=
 
-" powerline setup
+" Status bar - Ariline
+let g:airline#extensions#tabline#enabled = 1
+set laststatus=2
+
+ "powerline setup
 python3 from powerline.vim import setup as powerline_setup
 python3 powerline_setup()
-python3 del powerline_setup
-
-set laststatus=2
+"python3 del powerline_setup
+" HACK: python_setup is overridden by something else. So make it to be called
+" after startup. And then remove the loaded module
+autocmd VimEnter * execute "python3 powerline_setup()"
+autocmd VimEnter * execute "python3 del powerline_setup"

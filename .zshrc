@@ -8,9 +8,7 @@ export ZSH="/home/bala/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-#ZSH_THEME="agnoster"
-# ZSH_THEME="robbyrussell"
-# ZSH_THEME="amuse"
+#ZSH_THEME="robbyrussell"
 ZSH_THEME="bira"
 
 # Set list of themes to pick from when loading at random
@@ -36,7 +34,7 @@ ZSH_THEME="bira"
 # export UPDATE_ZSH_DAYS=13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS=true
+# DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -48,6 +46,8 @@ ZSH_THEME="bira"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
+# Caution: this setting can cause issues with multiline prompts (zsh 5.7.1 and newer seem to work)
+# See https://github.com/ohmyzsh/ohmyzsh/issues/5765
 # COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
@@ -101,12 +101,13 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Powerline configuration
-if [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
+LC_ALL=en_IN.UTF-8
+
+if [ -f /usr/share/powerline/bindings/zsh/powerline.sh ]; then
   powerline-daemon -q
-  POWERLINE_BASH_CONTINUATION=1
-  POWERLINE_BASH_SELECT=1
-  source /usr/share/powerline/bindings/bash/powerline.sh
+  #POWERLINE_BASH_CONTINUATION=1
+  #POWERLINE_BASH_SELECT=1
+  source /usr/share/powerline/bindings/zsh/powerline.sh
 fi
 
 export LC_ALL=en_IN.UTF-8
@@ -114,4 +115,4 @@ export LANG=en_IN.UTF-8
 ZSH_TMUX_AUTOSTART=true
 ZSH_TMUX_AUTOCONNECT=true
 
-export EDITOR=vim 
+export EDITOR=vim
