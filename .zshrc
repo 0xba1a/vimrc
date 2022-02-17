@@ -115,4 +115,26 @@ export LANG=en_IN.UTF-8
 ZSH_TMUX_AUTOSTART=true
 ZSH_TMUX_AUTOCONNECT=true
 
-export EDITOR=vim
+export PATH=$PATH:~/.local/bin/
+export EDITOR=nvim
+alias vim=nvim
+alias tmux="TERM=xterm-256color tmux"
+precmd() { export p=`cat /tmp/clipboard` }
+
+# W related custom settings
+function co() {
+    pkg=$1
+    git checkout origin/dev ~/source/CBL-Mariner/SPECS/$pkg
+}
+
+function pcp() {
+    pkg=$1
+    cp -rf ~/source/parity/SPECS/$pkg ~/source/CBL-Mariner/SPECS/
+}
+
+eval "$(mcfly init zsh)"
+bindkey '^R' mcfly-history-widget
+
+#if [ -f ~/.git-completion.bash ]; then
+  #. ~/.git-completion.bash
+#fi
